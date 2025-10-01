@@ -1,0 +1,15 @@
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {IAuthSuccessResponse} from '../interfaces/auth-success-response';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  private readonly _httpClient = inject(HttpClient);
+
+  validateUser(): Observable<IAuthSuccessResponse> {
+    return this._httpClient.get<IAuthSuccessResponse>('http://localhost:8080/api/protected');
+  }
+}
