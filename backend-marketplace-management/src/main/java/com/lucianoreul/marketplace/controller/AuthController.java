@@ -9,21 +9,18 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/login")
+@RequestMapping("/api")
 public class AuthController {
 
     @Autowired
     private AuthService authService;
 
-    @PostMapping()
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid LoginRequest request) {
         try {
             LoginResponse response = authService.authenticate(request.getEmail(), request.getPassword());
@@ -42,5 +39,13 @@ public class AuthController {
                     "message", "An error occurred while processing login"
             ));
         }
+    }
+
+    @GetMapping("/protected")
+    public ResponseEntity<?> validateToken() {
+        return ResponseEntity.ok(Map.of(
+                "message", "Token is valid",
+                "status", "success"
+        ));
     }
 }
