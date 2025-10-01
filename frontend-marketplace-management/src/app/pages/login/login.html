@@ -5,7 +5,7 @@
       <img class="w-24 h-24 mr-4" src="logo.svg" />
       <div>
         <h2 class="font-bold">Marketplace</h2>
-        <h4>Painel de Vendedor</h4>
+        <h4>Seller Dashboard</h4>
       </div>
     </div>
 
@@ -16,8 +16,8 @@
   <div class="flex flex-col justify-between gap-8 p-8 w-3/6 bg-white rounded-2xl" [formGroup]="userForm">
     <!-- titles -->
     <div>
-      <h2 class="font-bold">Acesse sua conta</h2>
-      <p class="font-light text-xs text-gray-600">Informe seu e-mail e senha para entrar</p>
+      <h2 class="font-bold">Access your account</h2>
+      <p class="font-light text-xs text-gray-600">Enter your email and password to sign in</p>
     </div>
     <!-- Email and Password Inputs -->
     <div class="flex flex-col gap-10">
@@ -29,20 +29,20 @@
           <input
             class="text-gray-400 text-sm focus:outline-none"
             type="text"
-            placeholder="Seu e-mail cadastrado"
+            placeholder="Your registered email"
             formControlName="email"
           />
         </div>
       </div>
       <!-- Password Input -->
       <div class="flex flex-col gap-2 border-b border-gray-300 pb-2">
-        <span class="text-gray-600 text-xs">SENHA</span>
+        <span class="text-gray-600 text-xs">PASSWORD</span>
         <div class="flex">
           <img class="mr-2 opacity-85 w-5 h-5" src="access.svg" />
           <input
             class="text-gray-400 text-sm focus:outline-none"
             type="password"
-            placeholder="Sua senha de acesso"
+            placeholder="Your password"
             formControlName="password"
           />
         </div>
@@ -57,7 +57,7 @@
       ${ userForm.invalid ? 'bg-gray-500 cursor-default' :
       'cursor-pointer bg-[#F24D0D] active:translate-y-2 duration-200 ease-in-out transition'}`"
       (click)="login()">
-      <span class="text-white">Acessar</span>
+      <span class="text-white">Sign in</span>
       <img class="w-4 h-4" src="right-arrow.svg" />
     </div>
   </div>
