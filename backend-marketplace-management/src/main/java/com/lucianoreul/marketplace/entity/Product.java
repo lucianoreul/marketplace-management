@@ -28,7 +28,9 @@ public class Product {
     @NotNull
     private BigDecimal price;
 
-    private String image;
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String imageBase64;
 
     @NotBlank
     private String category;

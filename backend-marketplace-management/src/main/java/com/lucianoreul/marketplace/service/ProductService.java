@@ -21,9 +21,9 @@ public class ProductService {
         product.setTitle(request.getTitle());
         product.setDescription(request.getDescription());
         product.setPrice(request.getPrice());
-        product.setImage(request.getImage());
+        product.setImageBase64(request.getImageBase64());
         product.setCategory(request.getCategory());
-        product.setStatus(request.getStatus());
+        product.setStatus("Advertised");
 
         productRepository.save(product);
 
@@ -58,11 +58,9 @@ public class ProductService {
         r.setTitle(product.getTitle());
         r.setDescription(product.getDescription());
         r.setPrice(product.getPrice());
-        r.setImage(product.getImage());
+        r.setImageBase64(product.getImageBase64());
         r.setCategory(product.getCategory());
         r.setStatus(product.getStatus());
-        r.setCreatedAt(product.getCreatedAt());
-        r.setUpdatedAt(product.getUpdatedAt());
         return r;
     }
 
@@ -73,9 +71,8 @@ public class ProductService {
         product.setTitle(request.getTitle());
         product.setDescription(request.getDescription());
         product.setPrice(request.getPrice());
-        product.setImage(request.getImage());
+        product.setImageBase64(request.getImageBase64());
         product.setCategory(request.getCategory());
-        product.setStatus(request.getStatus());
 
         productRepository.save(product);
         return mapToResponse(product);

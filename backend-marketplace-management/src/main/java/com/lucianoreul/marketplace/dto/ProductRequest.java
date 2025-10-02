@@ -22,12 +22,9 @@ public class ProductRequest {
     @DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than zero")
     private BigDecimal price;
 
-    private String image;
+    private String imageBase64;
 
     @NotBlank
     private String category;
-
-    @NotBlank
-    private String status;
 }
 
