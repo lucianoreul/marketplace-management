@@ -1,4 +1,4 @@
-<div class="w-full py-7 px-14 flex flex-col gap-6" [formGroup]="productForm">
+<form class="w-full py-7 px-14 flex flex-col gap-6" [formGroup]="productForm" (ngSubmit)="saveProduct()">
   <!-- Header Container -->
   <div>
     <h2 class="font-bold">New product</h2>
@@ -7,8 +7,12 @@
   <!-- Content Container -->
   <div class="flex gap-4 items-start">
     <!-- Product Image -->
-    <label for="image-upload-input" class="p-16 cursor-pointer rounded-4xl w-1/3 flex flex-col justify-center items-center gap-4 bg-[#F5EAEA]">
-      <img src="image-upload.svg" />
+    <label
+      for="image-upload-input"
+      class="p-16 cursor-pointer rounded-4xl w-1/3 flex flex-col justify-center items-center gap-4 bg-[#F5EAEA]"
+      role="button"
+    >
+      <img src="image-upload.svg" alt="upload icon image" />
       <p class="text-gray-600 text-center">Select the product <br /> image</p>
     </label>
     <input
@@ -29,22 +33,24 @@
         <div class="flex">
           <!-- Title Input -->
           <div class="flex flex-col gap-2 border-b border-gray-300 pb-2 w-4/5 mr-6">
-            <span class="text-gray-600 text-xs">Title</span>
+            <label for="input-title" class="text-gray-600 text-xs">Title</label>
             <input
               class="text-gray-400 text-sm focus:outline-none"
               type="text"
               placeholder="Product Name"
               formControlName="title"
+              id="input-title"
             />
           </div>
 
           <!-- Price Input -->
           <div class="flex flex-col gap-2 border-b border-gray-300 pb-2 flex-1">
-            <span class="text-gray-600 text-xs">Price</span>
+            <label for="input-price" class="text-gray-600 text-xs">Price</label>
             <div class="flex gap-2">
               <span>R$</span>
               <input
                 class="text-gray-400 text-sm focus:outline-none"
+                id="input-price"
                 type="number"
                 placeholder="0,00"
                 formControlName="price"
@@ -55,19 +61,24 @@
 
         <!-- Description Input -->
         <div class="flex flex-col gap-2 border-b border-gray-300 pb-2 flex-1">
-          <span class="text-gray-600 text-xs">Description</span>
+          <label for="input-description" class="text-gray-600 text-xs">Description</label>
           <input
             class="text-gray-400 text-sm focus:outline-none"
             type="text"
             placeholder="Write details about the product, size, features"
             formControlName="description"
+            id="input-description"
           />
         </div>
 
         <!-- Select Status -->
         <div class="flex flex-col gap-2 border-b border-gray-300 pb-2 flex-1">
-          <span class="text-gray-600 text-xs">Category</span>
-          <select class="w-full bg-white text-gray-400 text-sm focus:outline-none" formControlName="category">
+          <label for="select-status" class="text-gray-600 text-xs">Category</label>
+          <select
+            class="w-full bg-white text-gray-400 text-sm focus:outline-none"
+            id="select-status"
+            formControlName="category"
+          >
             <option value="" disabled selected hidden>Select</option>
             <option value="Furniture">Furniture</option>
             <option value="Stationery">Stationery</option>
@@ -81,25 +92,31 @@
       <!-- Buttons Container -->
       <div class="w-full flex gap-4">
         <!-- Cancel Button -->
-        <div class="flex flex-1 justify-center p-3 rounded-lg border-[#F24D0D] border-1 bg-white cursor-pointer active:translate-y-2 duration-200
-    ease-in-out transition">
+        <button
+          class="flex flex-1 justify-center p-3 rounded-lg border-[#F24D0D] border-1 bg-white cursor-pointer active:translate-y-2 duration-200
+    ease-in-out transition"
+          type="button"
+          (click)="cancel()"
+        >
           <span class="text-[#F24D0D] text-sm">Cancel</span>
-        </div>
+        </button>
         <!-- Save Button -->
-        <div
+        <button
           [class]="`
           flex flex-1 justify-center p-3 rounded-lg
     ${ productForm.valid && productImageBase64 ? 'bg-[#F24D0D] cursor-pointer active:translate-y-2 duration-200 ease-in-out transition' : 'bg-gray-500 cursor-default' }
-          `" (click)="saveProduct()"
+          `"
+          type="submit"
+          [disabled]="!productForm.valid || !productImageBase64"
         >
           <span class="text-white text-sm">Save and Publish</span>
-        </div>
+        </button>
       </div>
 
       @if (successMessage) {
-        <p class="font-bold text-green-500">{{ successMessage }}</p>
+        <p class="font-bold text-green-500" role="status">{{ successMessage }}</p>
       }
 
     </div>
   </div>
-</div>
+</form>
